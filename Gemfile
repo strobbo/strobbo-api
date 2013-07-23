@@ -36,3 +36,12 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+
+
+# Gems para autenticação
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+
+# Gem para integração com a API do Facebook
+gem 'fb_graph'
