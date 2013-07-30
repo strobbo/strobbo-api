@@ -1,0 +1,10 @@
+class CreateEvents < ActiveRecord::Migration
+  def change
+    create_table :states do |t|
+      t.string :name
+      acronym:string
+
+      t.timestamps
+    end
+  end
+end
