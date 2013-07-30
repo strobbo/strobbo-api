@@ -13,8 +13,23 @@
 
 ActiveRecord::Schema.define(:version => 20130730044617) do
 
+  create_table "cities", :force => true do |t|
+    t.integer  "state_id"
+    t.string   "name"
+    t.boolean  "capital"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "events", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "states", :force => true do |t|
+    t.string   "name"
+    t.string   "acronym"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
