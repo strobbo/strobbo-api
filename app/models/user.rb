@@ -1,26 +1,28 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
+  # :token_authenticatable, :confirmable, :rememberable,
   # :lockable, :timeoutable and :omniauthable
-  devise :rememberable, :trackable, :omniauthable, :omniauth_providers => [:facebook]
+  devise :trackable, :omniauthable, :omniauth_providers => [:facebook]
 
   # Setup accessible (or protected) attributes for your model
-	attr_accessible :email, :encrypted_password, :remember_me, :provider, :uid, :name, :image, :location, 
-									:access_token
+	attr_accessible :email, :encrypted_password, :provider, :uid, :name, :image, :location, 
+									:profile_url, :image_url, :gender, :birthday
 
 	def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
-		user = User.where(:provider => auth.provider, :uid => auth.uid).first
-		unless user
-		  user = User.create(name:auth.extra.raw_info.name,
-		                       provider:auth.provider,
-		                       uid:auth.uid,
-		                       email:auth.info.email,
-													 image:auth.info.image,
-													 location:auth.info.location,
-													 access_token:auth.credentials.token,
-		                       encrypted_password:Devise.friendly_token[0,20]
-		                       )
-		end
+
+		user = User.find_or_create_by_provider_and_uid(auth.provider, auth.uid)
+		user.update_attributes(	 
+													 name: auth.extra.raw_info.name,
+		                       provider: auth.provider,
+		                       uid: auth.uid,
+		                       email: auth.info.email,
+													 profile_url: auth.info.urls.Facebook,
+													 image_url: auth.info.image,
+													 gender: auth.extra.raw_info.gender,
+													 birthday: Date.strptime(auth.extra.raw_info.birthday, '%m/%d/%Y').strftime('%Y-%m-%d'),
+													 location: auth.info.location
+		                      )
 		user
 	end
+
 end

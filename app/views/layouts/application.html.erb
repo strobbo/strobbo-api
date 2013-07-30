@@ -9,7 +9,7 @@
 <body>
 
 <% if user_signed_in? %>
-	<img src="<%= current_user.image %>"/>
+	<img src="<%= current_user.image_url %>"/>
 	Olá, <%= current_user.name %>!
 	<br/><br/>
 	<strong>Minha cidade:</strong> <%= current_user.location %>
