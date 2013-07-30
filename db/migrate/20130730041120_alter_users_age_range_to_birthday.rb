@@ -1,6 +1,6 @@
 class AlterUsersAgeRangeToBirthday < ActiveRecord::Migration
   def change
-		change_column :users, :age_range, :date
-		rename_column :users, :age_range, :birthday
+		remove_column :users, :age_range
+		add_column :users, :birthday, :date
   end
 end
