@@ -241,5 +241,8 @@ Devise.setup do |config|
 	# Configuração de Omniauth com Facebook
 	require "omniauth-facebook"
 	config.omniauth :facebook, "518198334918772", "313225a0a778fd9873a635e63f7def68", 
-									:scope => 'email, user_birthday, user_location'
+									{ 
+										:scope => 'email, user_birthday, user_location', 
+										:client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}
+									}
 end
