@@ -8,6 +8,8 @@ Platform::Application.routes.draw do
 
   resources :places
 
+	resources :statuses, :only => [:create, :destroy] 
+
   resources :users do
     member do
       get :show, :controller => "users/users"

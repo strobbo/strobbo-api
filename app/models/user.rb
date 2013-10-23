@@ -8,6 +8,11 @@ class User < ActiveRecord::Base
 	attr_accessible :email, :encrypted_password, :provider, :uid, :name, :image, :location, 
 									:profile_url, :image_url, :gender, :birthday
 
+
+  # Relacionamentos nos quais o usuário possuis status em lugares
+  has_many :statuses
+  has_many :places, through: :statuses
+
 	def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
 
 		user = User.find_or_create_by_provider_and_uid(auth.provider, auth.uid)

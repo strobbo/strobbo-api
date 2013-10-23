@@ -5,6 +5,11 @@
   <%= @place.name %>
 </p>
 
+<%= render 'statuses/form' %>
+
+<%= render :partial => 'statuses/show', :collection => @place.statuses, :as => :status %>           
+
+<br></<br>
 
 <%= link_to 'Edit', edit_place_path(@place) %> |
 <%= link_to 'Back', places_path %>
