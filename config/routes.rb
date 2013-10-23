@@ -2,11 +2,11 @@ Platform::Application.routes.draw do
 
   # Homepages
   authenticated do
-  	root :to => 'activities#index'
+  	root :to => 'places#index'
   end
   root :to => redirect("/sign_in")
 
-  resources :events
+  resources :places
 
   resources :users do
     member do
