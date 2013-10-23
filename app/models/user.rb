@@ -13,6 +13,9 @@ class User < ActiveRecord::Base
   has_many :statuses
   has_many :places, through: :statuses
 
+	# Relacionamentos nos quais o usuário é dono de lugares
+	has_many :places, :as => :owner
+
 	def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
 
 		user = User.find_or_create_by_provider_and_uid(auth.provider, auth.uid)

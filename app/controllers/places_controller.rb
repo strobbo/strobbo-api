@@ -43,6 +43,7 @@ class PlacesController < ApplicationController
   # POST /places.json
   def create
     @place = Place.new(params[:place])
+    @place.owner = current_user
 
     respond_to do |format|
       if @place.save

@@ -5,6 +5,12 @@
   <%= @place.name %>
 </p>
 
+<p>
+  <b>Owner:</b>
+  <%= @place.owner.name %>
+</p>
+
+
 <%= render 'statuses/form' %>
 
 <%= render :partial => 'statuses/show', :collection => @place.statuses, :as => :status %>           
